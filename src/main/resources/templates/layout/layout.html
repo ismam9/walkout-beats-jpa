@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+<meta charset="UTF-8" />
+<title th:text="${title}"></title>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+<link rel="stylesheet" th:href="@{/css/jquery-ui.min.css}" />
+
+<link rel="stylesheet" th:href="@{/css/allcss.css}" />
+<link rel="stylesheet" th:href="@{/css/portada.css}" />
+</head>
+<body>
+
+	<header th:fragment="header">
+		<nav id="navbar" class="navbar navbar-expand-md navbar-dark bg-dark navbar-fixed-top">
+			<a class="navbar-brand" th:href="@{/walkout/}">Walkout Studio</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarNav" aria-controls="navbarNav"
+				aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item"><a class="nav-link" th:href="@{/walkout/home/}">Beats
+							<span class="sr-only">(current)</span>
+					</a></li>
+					<li class="nav-item"><a class="nav-link" th:href="@{/productores/}" >Productores</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		
+		<div class="alert alert-success" th:if="${success !=null}"
+			th:text="${success}"></div>
+		<div class="alert alert-warning" th:if="${error !=null}"
+			th:text="${error}"></div>
+		<div class="alert alert-danger" th:if="${warning !=null}"
+			th:text="${warning}"></div>
+		<div class="alert alert-info" th:if="${info !=null}" th:text="${info}"></div>
+
+	</header>
+	
+	<footer class="container py-0 my-3 bg-warning" th:fragment="footer">
+		
+		<div class="row">
+			<div class="col-md-2 my-0 mx-0 py-0 px-0">
+				<img id="footer-image" th:src="@{/images/walkout-light.jpg}" alt="Walkout Logo">
+			</div>
+			<div class="col-md-3">
+				<p>Disciplinam dixeris firme nutu cari pedalis int</p>
+			</div>
+			<div class="col-md-3">
+				<p>Disciplinam dixeris firme nutu illam mel avocent meam
+				iudicari pedalis int</p>
+			</div>
+			<div class="col-md-3">
+				<p>Disciplinam dixeris firme nutu illam mel avocent meam
+				 iudicari pedalis int</p>
+			</div>
+		</div>
+
+
+<script th:src="@{/js/jquery-3.4.1.min.js}"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<script th:src="@{/js/jquery-ui.min.js}"></script>
+	</footer>
+
+
+
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+	<script type="text/javascript" th:fragment="javascript">
+		console.log("hola que tal");
+
+		$(document).ready(function() {
+			$("#buscar_beat").autocomplete({
+
+				source : function(request, response) {
+					console.log("hola que tal");
+					$.ajax({
+						url : "/album/cargar-beats/" + request.term,
+						dataType : "json",
+						data : {
+							term : request.term
+						},
+						success : function(data) {
+							response($.map(data, function(item) {
+								return {
+									value : item.id,
+									label : item.nombre,
+									precio : item.precio,
+								};
+							}));
+						},
+					});
+				},
+				select : function(event, ui) {
+					//$("#buscar_producto").val(ui.item.label);
+					
+					var linea = $("#plantillaBeats").html();
+					
+					linea = linea.replace(/{ID}/g, ui.item.value);
+					linea = linea.replace(/{NOMBRE}/g, ui.item.label);
+					linea = linea.replace(/{PRECIO}/g, ui.item.precio);
+					
+					$("#cargarBeat tbody").append(linea);
+					
+					return false;
+				}
+			});
+			
+			$("form").submit(function(){
+				$("#plantillaBeats").remove();
+				return;
+			});
+
+		});
+		
+		var itemsHelper = {
+				
+				hasProducto: function(id){
+					
+					var resultado = false;
+					
+					$('input[name="beatsa_id[]"]').each(function(){
+						if(parseInt(id) == parseInt($(this).val()) ){
+							resultado = true;
+						}
+						
+					});
+					
+					return resultado
+				},
+				eliminarBeat: function(id){
+					$("#row_" + id).remove();
+					
+				}
+		}
+		
+	</script>
+
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout/layout :: head">
+</head>
+<body class="container">
+	
+	<header th:replace="layout/layout :: header">
+	</header>
+	
+	<div class="container-fluid" id="maxcontainer">
+		<div id="containerportada">
+			<div id="starts">
+				<a th:href="@{/walkout/home}" th:text="'ENTRY &raquo;'"></a>
+			</div>
+		</div>
+	</div>
+
+	<!-- <footer  th:replace="layout/layout :: footer"></footer>  -->
+	
+</body>
+</html>

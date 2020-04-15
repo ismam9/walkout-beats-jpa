@@ -1,0 +1,58 @@
+body{
+	background-image: url(/images/walkout-light.jpg);
+	background-size: 2%;
+	background-repeat: repeat;
+}
+
+#navbar{	
+	background: linear-gradient(to right, #870000, #190a05);
+	
+}
+
+#containerbody{
+	background: linear-gradient(to left, #870000, #190a05);
+}
+
+#containerbodyp{
+	background: linear-gradient(to left, #870000, #190a05);
+}
+
+.card{
+	background-color: rgba(245, 245, 245, 0.3);
+}
+
+.list-group-item{
+	background-color: rgba(245, 245, 245, 0.6);
+}
+
+#formcontainter{
+	background: linear-gradient(to left, #870000, #190a05);
+}
+
+#formcontaintera{
+	background: linear-gradient(to left, #870000, #190a05);
+}
+
+#formcontainterb{
+	background: linear-gradient(to left, #870000, #190a05);
+}
+
+#containerbeat{
+	background: linear-gradient(to left, #870000, #190a05);
+}
+
+#containeralbum{
+	background: linear-gradient(to left, #870000, #190a05);
+}
+
+#detallesalbum{
+	background: linear-gradient(to left, #870000, #190a05);
+}
+
+#footer-image{
+	width:75%;
+	heigth: auto;
+}
+
+
+

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout/layout :: head">
+</head>
+<body>
+	
+	<header th:replace="layout/layout :: header">
+	</header>
+	
+	<div id="containeralbum" class="container py-4">
+		
+		<div class="card text-dark">
+			
+			<div class="card">
+				<div class="card-header" th:text="${title}"></div>
+				
+				<div class="navbar navbar-expand-lg navbar-light bg-light">
+				 	<ul class="navbar-nav">
+				 		<li class="nav-item"><a class="nav-link" th:href="@{'/album/form/' + ${productor.id}}" th:text="'crear album'"></a></li>
+				 		<li class="nav-item"><a class="nav-link" th:href="@{'/beat/form/' + ${productor.id}}" th:text="'crear beat'"></a></li>
+				 	</ul>
+			 	</div>
+				
+				<!--<h4 class="card-title">
+					<a sec:authorize="hasRole('ROLE_ADMIN')" class="btn btn-primary btn-xs" th:href="@{'/factura/form/' + ${cliente.id}}" th:text="'crear factura'"></a>
+				</h4>-->
+				<h4 class="card-title px-4 py-2">
+					<a th:href="@{'/productores/'}"
+								class="btn btn-secondary">&laquo; volver</a>
+				</h4>
+							
+				<div class="card-body py-0">
+					
+					<div class="row px-4">			
+						<img th:if="${#strings.length(productor.foto) > 0}"
+								class="img-thumbnail rounded float-left" style="max-width: 25%;"
+								th:src="@{'/album/uploads-productor/' + ${album.foto}}" th:alt="${album.foto}" />
+								
+						<img th:unless="${#strings.length(productor.foto) > 0}" th:src="@{/images/walkout-dark.jpg}" class="card-img-top" alt="Walkout Logo" style="max-width: 25%;"/>
+		
+						<ul class="list-group px-4">
+							<li class="list-group-item" th:text="${productor.nombre} + ' ' + ${productor.apellido}"></li>
+							<li class="list-group-item" th:text="${productor.nickname}"></li>
+							<li class="list-group-item" th:text="${productor.email}"></li>
+							<li class="list-group-item" th:text="${productor.ciudad}"></li>
+						</ul>
+					
+					</div>
+					
+					<div th:if="${#lists.isEmpty(productor.albums)}"
+							class="alert alert-info my-4"
+							th:text="'No existen albums para' + ${productor.nombre} + '' + ${productor.apellido}">
+					</div>
+							
+						<table th:if="${not #lists.isEmpty(productor.albums)}"
+							class="table table-bordered table-spriped my-4">
+							<thead class="thead-inverse">
+								<tr>
+									<th>folio</th>
+									<th>descripcion</th>
+									<th>fecha</th>
+									<th>productor</th>
+									<th>ver</th>
+									<th>eliminar</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="album: ${productor.albums}">
+									<td th:text="${album.id}"></td>
+									<td th:text="${album.descripcion}"></td>
+									<td th:text="${album.createAt}"></td>
+									<td th:text="${album.productor.nickname}"></td>
+									<td><a class="btn btn-primary btn-xs" th:href="@{'/album/ver/' + ${album.id}}" th:text="'detalle del album'"></a></td>
+									<td><a class="btn btn-danger btn-xs" th:href="@{'/album/eliminar/' + ${album.id}}" th:text="'eliminar'" onclick="return confirm('Estas seguro que desea eliminar la factura?');"></a></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+			</div>
+							
+		</div>
+		
+	</div>
+	
+
+	<footer  th:replace="layout/layout :: footer"></footer>
+	
+</body>
+</html>

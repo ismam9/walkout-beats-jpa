@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head">
+</head>
+<body class="container">
+	
+	<header th:replace="layout/layout :: header">
+	</header>
+		<div id="containerbody" class="container py-4">
+			<h4 class="text-warning" th:text="${title}"></h4>
+			<div class="row px-4">
+				
+				<div class="col-md-3 py-2 px-1" th:each="beats: ${allbeats}">
+				  	<div class="card text-warning">
+			    		
+			    		<div class="card-header" th:text="${beats.nombre}"></div>
+		    						
+		    				<img th:if="${#strings.length(beats.foto) > 0}"
+							class="img-thumbnail rounded float-left" style="max-width: 100%;"
+							th:src="@{'/beat/uploads-productor/' + ${beats.foto}}" th:alt="${beats.foto}" />
+						
+							<img th:unless="${#strings.length(beats.foto) > 0}" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Antu_soundcloud.svg/1200px-Antu_soundcloud.svg.png" class="card-img-top" alt="">
+			    		
+			    		
+				    	<div class="card-body px-0">
+				    		
+				    		<audio controls class="container" style="padding-left:0px; padding-right:0px;">
+								<source th:src="@{'/beat/uploads-productor/' + ${beats.audio}}" type="audio/mpeg">
+											Your browser does not support the audio element.
+							</audio>
+				    		
+				      		<h5 class="card-title my-0" th:text="${beats.productor.nickname}"></h5>
+				      		<div class="text-warning my-0 py-0">
+				      			<span class="text-left">
+				      				<p class="card-text" th:text="${beats.tipo} + ' ---------------- ' + ${beats.duracion} + '. seg'"></p>
+				      			</span>
+				      			<p class="card-text text-right" th:text="${beats.categoria.nombre}"></p>
+				      		</div>
+				      		<p class="card-text"><strong><small th:text="'Create at: ' + ${beats.createAt}" class="text-light"></small></strong></p>
+				    	</div>
+				    
+			  		</div>
+				</div>
+		
+			</div>
+		</div>
+
+	<footer th:replace="layout/layout :: footer">
+	</footer>
+	
+</body>
+</html>

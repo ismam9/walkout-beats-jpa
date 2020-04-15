@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout/layout :: head">
+</head>
+<body>
+	
+	<header th:replace="layout/layout :: header">
+	</header>
+	
+	<div id="formcontainterb" class="container py-4">
+		
+		<div class="card text-warning">
+			<div class="card-header" th:text="${title}"></div>
+			
+			<div th:object="${beat}" th:remove="tag">
+				<ul th:if="${#fields.hasErrors('*')}" class="alert-danger">
+					<li th:each="err: ${#fields.errors('*')}" th:text="${err}"></li>
+				</ul>
+			</div>
+			
+			<form th:action="@{/beat/form}" th:object="${beat}" method="post" enctype="multipart/form-data">
+				<div class="form-group row py-2">
+					<label class="col-form-label col-sm-2">Nombre:</label>
+					<div class="col-sm-6">
+						<input type="text" th:field="*{nombre}"
+							class="form-control alert-danger " /> <small
+							class="form-text text-danger"
+							th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></small>
+					</div>
+				</div>
+				<div class="form-group row py-2">
+					<label class="col-form-label col-sm-2">Duracion:</label>
+					<div class="col-sm-6">
+						<input type="number" th:field="*{duracion}"
+							class="form-control alert-danger" /> <small
+							class="form-text text-danger"
+							th:if="${#fields.hasErrors('duracion')}" th:errors="*{duracion}"></small>
+					</div>
+				</div>
+				<div class="form-group row py-2">
+					<label class="col-form-label col-sm-2">Precio:</label>
+					<div class="col-sm-6">
+						<input type="number" th:field="*{precio}"
+							class="form-control alert-danger" /> <small
+							class="form-text text-danger"
+							th:if="${#fields.hasErrors('precio')}" th:errors="*{precio}"></small>
+					</div>
+				</div>
+				
+				<div class="form-group row py-2">
+					<label class="col-form-label col-sm-2">Categoria:</label>
+					<div class="col-sm-6">
+						<input type="number" name="categoria" th:field="*{categoria}"
+							class="form-control alert-danger"/> <small
+							class="form-text text-danger"
+							th:if="${#fields.hasErrors('categoria')}" th:errors="*{categoria}"></small>
+					</div>
+				</div>
+				
+				<div class="form-group row py-2">
+					<label class="col-form-label col-sm-2">Tipo:</label>
+					<div class="col-sm-6">
+						<select class="custom-select" name="tipo" th:field="*{tipo}">
+			  				<option selected th:value="'Ninguna'" th:text="'No-One'" value=""/>
+			  				<option th:value="'Free'" th:text="'Free'" value=""/>
+			  				<option th:value="'Leasing'" th:text="'Leasing'" value=""/>
+			  				<option th:value="'Exclusive'" th:text="'Exclusive'" value=""/>
+						</select>
+						<small class="form-text text-danger" th:if="${#fields.hasErrors('tipo')}" th:errors="*{tipo}"></small>
+					</div>
+				</div>
+				
+				<div class="form-group row py-2">
+					<label for="file" class="col-form-label col-sm-2">Foto</label>
+					<div class="col-sm-6">
+						<input type="file" class="form-control" name="file"/>
+					</div>
+				</div>
+				
+				<div class="form-group row py-2">
+					<label for="file" class="col-form-label col-sm-2">Audio</label>
+					<div class="col-sm-6">
+						<input type="file" class="form-control" name="file"/>
+					</div>
+				</div>
+				
+				
+				<div class="form-group row py-2">
+					<div class="col-sm-8">
+						<input type="submit" value="Crear Beat"
+							class="btn btn-warning" /> <a th:href="@{/productores}">Volver
+							al listado</a>
+					</div>
+				</div>
+					
+			</form>	
+		</div>
+		
+	</div>
+	
+
+	<footer  th:replace="layout/layout :: footer"></footer>
+	
+</body>
+</html>

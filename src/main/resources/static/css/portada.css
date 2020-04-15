@@ -1,0 +1,50 @@
+#maxcontainer{
+	background-image: url(https://yt3.ggpht.com/a/AGF-l78QF403tWDUxaFP8fC835X7IUIrvSv3zx4kBA=s900-c-k-c0xffffffff-no-rj-mo);
+	background-size: 2%;
+	background-repeat: repeat;
+}
+
+#containerportada{
+	  background: linear-gradient(to right, #403b4a, #e7e9bb);
+	  
+	  position: relative;
+	  min-height: 92vh;
+	  
+}
+
+#starts{
+		
+	position: absolute;
+	right: 10%;
+	top: 80%;
+	
+  	
+  	animation: pulse 2.9s ease infinite;
+  	
+  	display: flex;
+  	justify-content: center;
+  	align-items: center;
+  	position: absolute;
+  	z-index: 99;
+  	border: none;
+  	cursor: pointer;
+  	outline: none;
+	
+}
+
+#starts > a {
+	
+	color: #FC5185;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1, 1);
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1.7);
+    opacity: 0;
+  }

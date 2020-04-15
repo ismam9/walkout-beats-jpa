@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head">
+</head>
+<body>
+
+	<header th:replace="layout/layout :: header"> </header>
+
+	<div id="formcontaintera" class="container py-4">
+		<div class="card text-warning">
+			<div class="card-header" th:text="${title}"></div>
+
+			<div class="card-body">
+				<h4 class="card-title">
+					<a class="btn btn-light btn-xs" th:href="@{'/productores/ver/' + ${album.productor.id}}" th:text="'&laquo; volver'"></a>
+				</h4>
+				 
+				<form th:action="@{/album/form/}" th:object="${album}"
+					method="post"  enctype="multipart/form-data" >
+
+					<div class="form-group row py-2">
+						<label for="productor" class="col-sm-3 col-form-label" th:text="'Productor'"></label>
+						<div class="col-sm-6">
+							<input
+								th:value="${album.productor.nombre} + '' + ${album.productor.apellido}"
+								class="form-control" disabled="disabled" />
+						</div>
+					</div>
+
+					<div class="form-group row py-2">
+						<label for="descripcion" class="col-sm-3 col-form-label" th:text="'Descripción'"></label>
+						<div class="col-sm-6">
+							<input type="text" th:field="*{descripcion}" class="form-control" th:errorclass="'form-control is-invalid'" />
+							<div class="invalid-feedback" th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}"></div>
+						</div>
+					</div>
+					
+					<div class="form-group row py-2">
+						<label for="buscar_producto" class="col-sm-3 col-form-label" th:text="'Buscar producto'"></label>
+						<div class="col-sm-6">
+							<input type="text" name="buscar_beat" id="buscar_beat" class="form-control" />
+						</div>
+					</div>
+					
+					<div class="form-group row py-2">
+						<label for="file" class="col-form-label col-sm-2">Foto</label>
+						<div class="col-sm-6">
+							<input type="file" class="form-control" name="file"/>
+						</div>
+					</div>
+					
+					<table th:replace="album/plantilla-beats :: beatItem"></table>
+					
+					<table id="cargarBeat" class="table table-sm table-striped table-hover">
+						<thead>
+							<tr>
+								<th>Nombre</th>
+								<th>Duracion</th>
+								<th>Precio</th>
+								<th>Categoria</th>
+								<th>Eliminar</th>
+								
+							</tr>
+						</thead>
+						
+						<tbody></tbody>
+					</table>
+					
+					<div class="form-group row">
+						<div class="col-sm-6">
+							<input type="submit" th:value="${title}" class="btn btn-secundary" />
+							<a th:href="@{/productores}">Volver
+							al listado</a>
+							
+						</div>
+					</div>
+
+				</form>
+			</div>
+		</div>
+
+	</div>
+	<footer th:replace="layout/layout :: footer"></footer>
+	
+	<script th:replace="album/js/autocomplete-beats :: javascript"></script>
+
+</body>
+</html>
