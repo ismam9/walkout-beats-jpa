@@ -46,35 +46,50 @@
 								<li class="list-group-item"
 									th:text="'Fecha: ' + ${album.createAt}"></li>
 							</ul>
+							<ul class="list-group px-2 text-light">
+								<li class="list-group-item list-group-item-success"
+									th:text="'Acciones'"></li>
+								<li class="list-group-item" th:text="'Editar'"></li>
+								<li class="list-group-item"
+									th:text="'Eliminar album'"></li>
+							</ul>
 						</div>
 		
 						<div class="alert alert-info my-4"
 							th:if="${#lists.isEmpty(album.beatsa)}"
-							th:text="'No hay lineas para la factura' + ${album.descripcion}"></div>
-						<table th:if="${not #lists.isEmpty(album.beatsa)}"
-							class="table table-striped table-hover table-bordered my-4">
-							<thead>
-								<tr>
-									<th>Beat</th>
-									<th>Duracion</th>
-									<th>Precio</th>
-									<th>Create At</th>
-									<th>Productor</th>
-									<th>Categoria</th>
-								</tr>
-							</thead>
-		
-							<tbody>
-								<tr th:each="linea: ${album.beatsa} ">
-									<td th:text="${linea.beat.nombre}"></td>
-									<td th:text="${linea.beat.duracion} + ' min?'"></td>
-									<td th:text="${linea.beat.precio} + ' euros'"></td>
-									<td th:text="${linea.beat.createAt}"></td>
-									<td th:text="${linea.beat.productor.nickname}"></td>
-									<td th:text="${linea.beat.categoria.nombre}"></td>
-								</tr>
-							</tbody>
-						</table>
+							th:text="'No hay beats para el album' + ${album.descripcion}"></div>
+						
+						<div class="row" th:if="${not #lists.isEmpty(album.beatsa)}">
+							<div class="col-sm-12 my-0" th:each="linea: ${album.beatsa}">
+								<div class="card-header" th:text="${linea.beat.nombre}">
+							    	
+							  	</div>
+							  	<div class="card-body py-0">
+							  		<div class="row py-0">
+							  			<div class="col-sm-8 mx-0">
+							  				<h5 class="card-title" th:text="${linea.beat.productor.nickname}"></h5>
+								    		<audio controls class="container" style="padding-left:0px; padding-right:0px;">
+												<source th:src="@{'/beat/uploads-productor/' + ${linea.beat.audio}}" type="audio/mpeg">
+															Your browser does not support the audio element.
+											</audio>
+								    		<a href="#" class="btn btn-primary">Editar</a>
+							  			</div>
+							  			<div class="col-sm-4 mx-0 py-0 my-0">
+							  				<img th:if="${#strings.length(linea.beat.foto) > 0}"
+											class="img-thumbnail rounded float-left" style="max-width: 60%%;"
+											th:src="@{'/beat/uploads-productor/' + ${linea.beat.foto}}" th:alt="${linea.beat.foto}" />
+						
+											<img th:unless="${#strings.length(linea.beat.foto) > 0}" style="max-width: 60%"; src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Antu_soundcloud.svg/1200px-Antu_soundcloud.svg.png" class="card-img-top" alt="">
+											
+											<p class="card-text" th:text="${linea.beat.categoria.nombre} + ' ' + ${linea.beat.tipo}"></p>
+											<p class="card-text" th:text="${linea.beat.precio}"></p>
+							  			</div>
+							  		</div>
+				
+						  		</div>
+							
+							</div>
+						</div>
 		
 						<div class="card border-info mb-4" style="max-width: 20rem;">
 							<div class="header">Comentarios</div>

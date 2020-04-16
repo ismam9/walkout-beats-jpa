@@ -51,31 +51,55 @@
 							class="alert alert-info my-4"
 							th:text="'No existen albums para' + ${productor.nombre} + '' + ${productor.apellido}">
 					</div>
+					
+					<div class="row" th:if="${not #lists.isEmpty(productor.albums)}">
+						<div class="col-sm-12 py-4" th:each="album: ${productor.albums}">
+							<div class="card">
 							
-						<table th:if="${not #lists.isEmpty(productor.albums)}"
-							class="table table-bordered table-spriped my-4">
-							<thead class="thead-inverse">
-								<tr>
-									<th>folio</th>
-									<th>descripcion</th>
-									<th>fecha</th>
-									<th>productor</th>
-									<th>ver</th>
-									<th>eliminar</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr th:each="album: ${productor.albums}">
-									<td th:text="${album.id}"></td>
-									<td th:text="${album.descripcion}"></td>
-									<td th:text="${album.createAt}"></td>
-									<td th:text="${album.productor.nickname}"></td>
-									<td><a class="btn btn-primary btn-xs" th:href="@{'/album/ver/' + ${album.id}}" th:text="'detalle del album'"></a></td>
-									<td><a class="btn btn-danger btn-xs" th:href="@{'/album/eliminar/' + ${album.id}}" th:text="'eliminar'" onclick="return confirm('Estas seguro que desea eliminar la factura?');"></a></td>
-								</tr>
-							</tbody>
-						</table>
+						  		<h5 class="card-header" th:text="${album.descripcion}"></h5>
+						  		
+					  			<div class="card-body">
+					    			
+					    			<div class="row">
+					    				
+					    				<div class="col-sm-8 mx-0">
+					    					<h5 class="card-title" th:text="${album.productor.nickname}"></h5>
+					    					
+					    					<p class="card-text text-warning">
+					    						<small class="text-right" th:text="${album.createAt}"></small>
+					    					</p>
+							
+							    			<ul id="myBeatsonAlbum" class="list-group px-0 py-1" th:each="beat: ${productor.beats}">
+												<li class="list-group-item" th:text="${beat.nombre} + ' ' + ${beat.precio}"></li>
+											</ul>	
+										
+											<span th:if="${#lists.size(album.beatsa) > 0 }" th:text="'existen más beats'"></span>
+											<br/>
+											
+											<a class="btn btn-primary btn-xs my-4" th:href="@{'/album/ver/' + ${album.id}}" th:text="'Ver todos los Beats'"></a>
+											
+					    				</div>
+					    				
+					    				<div class="col-sm-4 px-0">
+											<img th:if="${#strings.length(album.foto) > 0}"
+											class="img-thumbnail rounded float-right" style="max-width: 80%;"
+											th:src="@{'/beat/uploads-productor/' + ${album.foto}}" th:alt="${album.foto}" />
+										
+											<img class="img-thumbnail rounded float-right" th:unless="${#strings.length(album.foto) > 0}" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Antu_soundcloud.svg/1200px-Antu_soundcloud.svg.png" alt="" style="width:80%;">
+										    					
+					    				</div>
+					    				
+					    			</div>
+					    		
+							  </div>
+							  
+							</div>
+						</div>
 					</div>
+							
+						<!-- <a class="btn btn-danger btn-xs" th:href="@{'/album/eliminar/' + ${album.id}}" th:text="'eliminar'" onclick="return confirm('Estas seguro que desea eliminar la factura?');"></a>-->
+								
+				</div>
 			</div>
 							
 		</div>

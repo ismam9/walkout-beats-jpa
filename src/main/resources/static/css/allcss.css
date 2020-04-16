@@ -54,5 +54,7 @@ body{
 	heigth: auto;
 }
 
-
+/*#myBeatsonAlbum + li:nth-of-type(1n+2) {
+  display: none;
+}*/
 

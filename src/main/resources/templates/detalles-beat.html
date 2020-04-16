@@ -64,6 +64,7 @@
 				      		<p class="card-text"><strong><small th:text="'Create at: ' + ${beat.createAt}" class="text-light"></small></strong></p>
 				      		
 				      		<!--<td><a class="btn btn-primary btn-xs" th:href="@{'/album/ver/' + ${album.id}}" th:text="'detalle del album'"></a></td> -->
+				      		<a class="btn btn-primary btn-xs" href="#" th:text="'Editar'"></a>
 							<a class="btn btn-danger btn-xs" th:href="@{'/beat/eliminar/' + ${beat.id}}" th:text="'eliminar'" onclick="return confirm('Estas seguro que desea eliminar el beat?');"></a>
 				    	</div>
 				    
