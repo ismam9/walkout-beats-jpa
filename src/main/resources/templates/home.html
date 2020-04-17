@@ -14,21 +14,21 @@
 				  	<div class="card text-warning">
 			    		
 			    		<div class="card-header" th:text="${beats.nombre}"></div>
-		    						
-		    				<img th:if="${#strings.length(beats.foto) > 0}"
+			    			
+			    			<img th:if="${#strings.length(beats.foto) > 0}"
 							class="img-thumbnail rounded float-left" style="max-width: 100%;"
 							th:src="@{'/beat/uploads-productor/' + ${beats.foto}}" th:alt="${beats.foto}" />
-						
-							<img th:unless="${#strings.length(beats.foto) > 0}" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Antu_soundcloud.svg/1200px-Antu_soundcloud.svg.png" class="card-img-top" alt="">
-			    		
+							
+							<img th:if="${#strings.isEmpty(beats.foto) || #strings.length(beats.foto) < 0}" th:src="@{/images/walkout-dark.jpg}" class="card-img-top" alt="Walkout Logo" style="max-width: 100%;" />
+			    			
 			    		
 				    	<div class="card-body px-0">
 				    		
-				    		<audio controls class="container" style="padding-left:0px; padding-right:0px;">
+				    		<h5 th:if="${#strings.isEmpty(beats.audio) || #strings.length(beats.audio) < 0}" class="container text-info" th:text="'No existe audio para este beat'" style="padding-left:0px; padding-right:0px;"></h5>
+							<audio controls class="container" th:if="${not #strings.isEmpty(beats.audio)}" style="padding-left:0px; padding-right:0px;">
 								<source th:src="@{'/beat/uploads-productor/' + ${beats.audio}}" type="audio/mpeg">
-											Your browser does not support the audio element.
 							</audio>
-				    		
+				   	
 				      		<h5 class="card-title my-0" th:text="${beats.productor.nickname}"></h5>
 				      		<div class="text-warning my-0 py-0">
 				      			<span class="text-left">

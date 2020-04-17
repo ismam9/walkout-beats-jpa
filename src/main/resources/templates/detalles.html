@@ -34,7 +34,7 @@
 					<div class="row px-4">			
 						<img th:if="${#strings.length(productor.foto) > 0}"
 								class="img-thumbnail rounded float-left" style="max-width: 25%;"
-								th:src="@{'/album/uploads-productor/' + ${album.foto}}" th:alt="${album.foto}" />
+								th:src="@{'/productores/uploads-productor/' + ${productor.foto}}" th:alt="${productor.foto}" />
 								
 						<img th:unless="${#strings.length(productor.foto) > 0}" th:src="@{/images/walkout-dark.jpg}" class="card-img-top" alt="Walkout Logo" style="max-width: 25%;"/>
 		
@@ -69,10 +69,11 @@
 					    						<small class="text-right" th:text="${album.createAt}"></small>
 					    					</p>
 							
-							    			<ul id="myBeatsonAlbum" class="list-group px-0 py-1" th:each="beat: ${productor.beats}">
+							    			<!-- <ul id="myBeatsonAlbum" class="list-group px-0 py-1" th:each="beat: ${productor.beats}">
 												<li class="list-group-item" th:text="${beat.nombre} + ' ' + ${beat.precio}"></li>
 											</ul>	
-										
+											-->
+											
 											<span th:if="${#lists.size(album.beatsa) > 0 }" th:text="'existen más beats'"></span>
 											<br/>
 											
@@ -83,9 +84,9 @@
 					    				<div class="col-sm-4 px-0">
 											<img th:if="${#strings.length(album.foto) > 0}"
 											class="img-thumbnail rounded float-right" style="max-width: 80%;"
-											th:src="@{'/beat/uploads-productor/' + ${album.foto}}" th:alt="${album.foto}" />
+											th:src="@{'/album/uploads-productor/' + ${album.foto}}" th:alt="${album.foto}" />
 										
-											<img class="img-thumbnail rounded float-right" th:unless="${#strings.length(album.foto) > 0}" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Antu_soundcloud.svg/1200px-Antu_soundcloud.svg.png" alt="" style="width:80%;">
+											<img class="img-thumbnail rounded float-left" th:unless="${#strings.length(album.foto) > 0}" th:src="@{/images/walkout-light.jpg}">
 										    					
 					    				</div>
 					    				
@@ -96,8 +97,6 @@
 							</div>
 						</div>
 					</div>
-							
-						<!-- <a class="btn btn-danger btn-xs" th:href="@{'/album/eliminar/' + ${album.id}}" th:text="'eliminar'" onclick="return confirm('Estas seguro que desea eliminar la factura?');"></a>-->
 								
 				</div>
 			</div>

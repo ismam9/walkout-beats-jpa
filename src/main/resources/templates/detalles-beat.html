@@ -39,36 +39,36 @@
 
 			<div class="col-md-3 py-2 px-1" th:each="beat: ${productor.beats}">
 				<div class="card text-warning">
-		    						
-		    				<img th:if="${#strings.length(beat.foto) > 0}"
-							class="img-thumbnail rounded float-left" style="max-width: 100%;"
-							th:src="@{'/beat/uploads-productor/' + ${beat.foto}}" th:alt="${beat.foto}" />
+							
+					<img th:if="${#strings.length(beat.foto) > 0}"
+					class="img-thumbnail rounded float-left" style="max-width: 100%;"
+					th:src="@{'/beat/uploads-productor/' + ${beat.foto}}" th:alt="${beat.foto}" />
+					
+					<img th:if="${#strings.isEmpty(beat.foto) || #strings.length(beat.foto) < 0}" th:src="@{/images/walkout-dark.jpg}" class="card-img-top" alt="Walkout Logo" style="max-width: 25%;" />
+		    		
+		    		
+			    	<div class="card-body px-0">
+			    		
+			    		<h4 th:if="${#strings.isEmpty(beat.audio) || #strings.length(beat.audio) < 0}" class="container" th:text="'No existe audio para este beat'" style="padding-left:0px; padding-right:0px;"></h4>
+						<audio controls class="container" th:if="${not #strings.isEmpty(beat.audio)}" style="padding-left:0px; padding-right:0px;">
+							<source th:src="@{'/beat/uploads-productor/' + ${beat.audio}}" type="audio/mpeg">
+						</audio>
 						
-							<img th:unless="${#strings.length(beat.foto) > 0}" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Antu_soundcloud.svg/1200px-Antu_soundcloud.svg.png" class="card-img-top" alt="">
-			    		
-			    		
-				    	<div class="card-body px-0">
-				    		
-				    		<audio controls class="container" style="padding-left:0px; padding-right:0px;">
-								<source th:src="@{'/beat/uploads-productor/' + ${beat.audio}}" type="audio/mpeg">
-											Your browser does not support the audio element.
-							</audio>
-				    		
-				      		<h5 class="card-title my-0" th:text="${beat.productor.nickname}"></h5>
-				      		<div class="text-warning my-0 py-0">
-				      			<span class="text-left">
-				      				<p class="card-text" th:text="${beat.tipo} + ' ---------------- ' + ${beat.duracion} + '. seg'"></p>
-				      			</span>
-				      			<p class="card-text text-right" th:text="${beat.categoria.nombre}"></p>
-				      		</div>
-				      		<p class="card-text"><strong><small th:text="'Create at: ' + ${beat.createAt}" class="text-light"></small></strong></p>
-				      		
-				      		<!--<td><a class="btn btn-primary btn-xs" th:href="@{'/album/ver/' + ${album.id}}" th:text="'detalle del album'"></a></td> -->
-				      		<a class="btn btn-primary btn-xs" href="#" th:text="'Editar'"></a>
-							<a class="btn btn-danger btn-xs" th:href="@{'/beat/eliminar/' + ${beat.id}}" th:text="'eliminar'" onclick="return confirm('Estas seguro que desea eliminar el beat?');"></a>
-				    	</div>
+			      		<h5 class="card-title my-0" th:text="${beat.productor.nickname}"></h5>
+			      		<div class="text-warning my-0 py-0">
+			      			<span class="text-left">
+			      				<p class="card-text" th:text="${beat.tipo} + ' ---------------- ' + ${beat.duracion} + '. seg'"></p>
+			      			</span>
+			      			<p class="card-text text-right" th:text="${beat.categoria.nombre}"></p>
+			      		</div>
+			      		<p class="card-text"><strong><small th:text="'Create at: ' + ${beat.createAt}" class="text-light"></small></strong></p>
+			      		
+			      		<!--<td><a class="btn btn-primary btn-xs" th:href="@{'/album/ver/' + ${album.id}}" th:text="'detalle del album'"></a></td> -->
+			      		<a th:href="@{/beat/form/} + ${beat.id}" th:text="'editar'" class="btn btn-primary">Editar</a>
+						<a class="btn btn-danger btn-xs" th:href="@{'/beat/eliminar/' + ${beat.id}}" th:text="'eliminar'" onclick="return confirm('Estas seguro que desea eliminar el beat?');"></a>
+			    	</div>
 				    
-			  		</div>
+		  		</div>
 			</div>
 		
 		</div>

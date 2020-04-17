@@ -147,13 +147,13 @@ public class BeatController {
 			beat.setAudio(uniqueFilenamea);
 		}
 		
-		//String mensajeFlash = (beat.getId() != null) ? "Beat editado con exito" : "Beat creado con exito!";
+		String mensajeFlash = (beat.getId() != null) ? "Beat editado con exito" : "Beat creado con exito!";
 		
 		beat.setCategoria(categoria);
 		productorService.saveBeat(beat);
 		
 		status.setComplete();
-		flash.addFlashAttribute("success", "Beat creado con exito");
+		flash.addFlashAttribute("success", mensajeFlash);
 		
 		return "redirect:/productores/ver-beat/" + beat.getProductor().getId();		
 	}

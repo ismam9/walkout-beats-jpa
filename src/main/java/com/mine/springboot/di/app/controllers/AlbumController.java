@@ -176,9 +176,11 @@ public class AlbumController {
 			album.setFoto(uniqueFilename);
 		}
 		
+		String mensajeFlash = (album.getId() != null) ? "Album editado con exito" : "Album creado con exito!";
+		
 		productorService.saveAlbum(album);
 		status.setComplete();
-		flash.addFlashAttribute("success", "Album creado con exito");
+		flash.addFlashAttribute("success", mensajeFlash);
 		
 		return "redirect:/productores/ver/" + album.getProductor().getId();
 		

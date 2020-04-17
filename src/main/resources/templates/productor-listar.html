@@ -20,6 +20,8 @@
 						class="img-thumbnail rounded float-left" style="max-width: 100%;"
 						th:src="@{'/productores/uploads-productor/' + ${productor.foto}}" th:alt="${productor.foto}" />
 						
+						<img class="img-thumbnail rounded float-left" th:unless="${#strings.length(productor.foto) > 0}" th:src="@{/images/walkout-light.jpg}">
+						
 					  	<div class="card-body">
 					    	<h5 th:text="${productor.nickname}" class="card-title"></h5>
 						    <p th:text="${productor.nombre + ' ' + productor.apellido}" class="card-text"></p>
@@ -29,23 +31,27 @@
 	    					<li th:text="${productor.ciudad}" class="list-group-item text-dark"></li>
 	  					</ul>
 					  	<div class="card-body py-0 px-0">
-					  		<div class="navbar navbar-expand-sm bg-dark py-0 px-0" style="border:2px solid yellow;">
+					  		<div class="navbar navbar-expand-sm bg-dark py-0 px-0" style="border-bottom:2px solid yellow;">
 						  		<ul class="navbar-nav mx-auto">
-						  			<!--<li>
-						  				<a th:href="@{/productores/form/} + ${productor.id}" th:text="'editar'" class="list-group-item">Editar</a>
-						  				<a class="list-group-item" th:href="@{/productores/eliminar/} + ${productor.id}" th:text="'eliminar'" onclick="return confirm('seguro que desea eliminar el usuario???');"></a>
-						  			</li>
-						  			 -->
-						  			<li class="nav-item mx-0 px-4" style="border:2px solid yellow;">
+						  			<li class="nav-item mx-0 px-4">
 						  				<a class="nav-link text-light" th:href="@{/productores/ver/} + ${productor.id}" th:text="'Ver albumnes'"></a>
-							    		<!-- <a class="list-group-item" th:href="@{'/album/form/' + ${productor.id}}" th:text="'crear album'"></a>  -->
 						  			</li>
-						  			<li class="nav-item mx-0 px-4"  style="border:2px solid yellow;">
+						  			<li class="nav-item mx-0 px-4">
 						  				<a class="nav-link text-light" th:href="@{/productores/ver-beat/} + ${productor.id}" th:text="'Ver beats'"></a>
-							    		<!-- <a class="list-group-item" th:href="@{'/beat/form/' + ${productor.id}}" th:text="'crear beat'"></a>  -->
+						  			</li>
+						  		</ul>
+						  		
+					  		</div>
+					  		
+					  		<div class="navbar navbar-expand-sm bg-dark py-0 px-0" style="border-top:2px solid yellow;">
+						  		<ul class="navbar-nav mx-auto">
+						  			<li class="nav-item">
+						  				<a th:href="@{/productores/form/} + ${productor.id}" th:text="'editar'" class="btn btn-primary">Editar</a>
+						  				<a class="btn btn-danger" th:href="@{/productores/eliminar/} + ${productor.id}" th:text="'eliminar'" onclick="return confirm('seguro que desea eliminar el usuario???');"></a>
 						  			</li>
 						  		</ul>
 					  		</div>
+					  		
 					  	</div>
 					</div>
 				</div>

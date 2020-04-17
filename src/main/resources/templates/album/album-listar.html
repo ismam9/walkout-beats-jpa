@@ -27,8 +27,8 @@
 							class="img-thumbnail rounded float-left" style="max-width: 25%;"
 							th:src="@{'/album/uploads-productor/' + ${album.foto}}" th:alt="${album.foto}" />
 							
-							<img th:unless="${#strings.length(album.foto) > 0}" th:src="@{/images/walkout-dark.jpg}" class="card-img-top" alt="Walkout Logo" style="max-width: 25%;"/>							
-							
+							<img th:if="${#strings.isEmpty(album.foto) || #strings.length(album.foto) < 0}" th:src="@{/images/walkout-dark.jpg}" class="card-img-top" alt="Walkout Logo" style="max-width: 25%;" />
+														
 							<ul class="list-group px-4 text-light">
 								<li class="list-group-item list-group-item-primary"
 									th:text="'Datos del Productor'"></li>
@@ -49,9 +49,8 @@
 							<ul class="list-group px-2 text-light">
 								<li class="list-group-item list-group-item-success"
 									th:text="'Acciones'"></li>
-								<li class="list-group-item" th:text="'Editar'"></li>
-								<li class="list-group-item"
-									th:text="'Eliminar album'"></li>
+								<!-- <li class="list-group-item" th:text="'Editar'"><a th:href="@{/album/form/} + ${album.id}" th:text="'editar'" class="btn btn-primary">Editar</a></li>  -->
+								<li class="list-group-item"><a class="btn btn-danger btn-xs" th:href="@{'/album/eliminar/' + ${album.id}}" th:text="'eliminar'" onclick="return confirm('Estas seguro que desea eliminar el album?');"></a></li>
 							</ul>
 						</div>
 		
@@ -67,19 +66,21 @@
 							  	<div class="card-body py-0">
 							  		<div class="row py-0">
 							  			<div class="col-sm-8 mx-0">
+							  			
 							  				<h5 class="card-title" th:text="${linea.beat.productor.nickname}"></h5>
-								    		<audio controls class="container" style="padding-left:0px; padding-right:0px;">
+							  				
+								    		<h4 th:if="${#strings.isEmpty(linea.beat.audio) || #strings.length(linea.beat.audio) < 0}" class="container" th:text="'No existe audio para este beat'" style="padding-left:0px; padding-right:0px;"></h4>
+											<audio controls class="container" th:if="${not #strings.isEmpty(linea.beat.audio)}" style="padding-left:0px; padding-right:0px;">
 												<source th:src="@{'/beat/uploads-productor/' + ${linea.beat.audio}}" type="audio/mpeg">
-															Your browser does not support the audio element.
 											</audio>
-								    		<a href="#" class="btn btn-primary">Editar</a>
+								    		<!-- <a href="#" class="btn btn-primary">Editar</a>  -->
 							  			</div>
 							  			<div class="col-sm-4 mx-0 py-0 my-0">
 							  				<img th:if="${#strings.length(linea.beat.foto) > 0}"
 											class="img-thumbnail rounded float-left" style="max-width: 60%%;"
 											th:src="@{'/beat/uploads-productor/' + ${linea.beat.foto}}" th:alt="${linea.beat.foto}" />
 						
-											<img th:unless="${#strings.length(linea.beat.foto) > 0}" style="max-width: 60%"; src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Antu_soundcloud.svg/1200px-Antu_soundcloud.svg.png" class="card-img-top" alt="">
+											<img th:if="${#strings.isEmpty(linea.beat.foto) || #strings.length(linea.beat.foto) < 0}" th:src="@{/images/walkout-dark.jpg}" class="card-img-top" alt="Walkout Logo" style="max-width: 45%;" />
 											
 											<p class="card-text" th:text="${linea.beat.categoria.nombre} + ' ' + ${linea.beat.tipo}"></p>
 											<p class="card-text" th:text="${linea.beat.precio}"></p>

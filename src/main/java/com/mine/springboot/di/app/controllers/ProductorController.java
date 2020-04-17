@@ -156,7 +156,7 @@ public class ProductorController {
 			productor.setFoto(uniqueFilename);
 		}
 
-		String mensajeFlash = (productor.getId() != null) ? "Productor editado con exito" : "Cliente creado con exito!";
+		String mensajeFlash = (productor.getId() != null) ? "Productor editado con exito" : "Productor creado con exito!";
 
 		productorService.save(productor);
 		status.setComplete();
