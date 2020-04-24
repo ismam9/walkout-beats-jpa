@@ -43,3 +43,10 @@ insert into beat_album(album_id, beat_id) values(1, 3);
 insert into album(descripcion, foto, create_at, productor_id) values('el peor album de la historia', '', NOW(), 6);
 insert into beat_album(album_id, beat_id) values(2, 4);
 insert into beat_album(album_id, beat_id) values(2, 5);
+
+INSERT INTO users (username, password, enabled) VALUES ('andres', '$2a$10$SQvcsb.1X2UYYrCU9Z4jVOmAx62uov1u0CYWNvfUQarjfOy/wXivu', 1);
+INSERT INTO users (username, password, enabled) VALUES ('admin', '$2a$10$M/hTziFDtd4vdK5.09b1JO3YAIAubdbl.jJWwooH/n6TBL6xu4ynW', 1);
+
+insert into authorities (user_id, authority) values(1, 'ROLE_USER');
+insert into authorities (user_id, authority) values(2, 'ROLE_ADMIN');
+insert into authorities (user_id, authority) values(2, 'ROLE_USER');

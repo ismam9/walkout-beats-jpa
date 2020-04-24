@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -61,6 +62,7 @@ public class BeatController {
 				.body(recurso);
 	}
 	
+	@Secured("ROLE_ADMIN")
 	@GetMapping("/eliminar/{id}")
 	public String eliminar(@PathVariable(value = "id") Long id,
 			RedirectAttributes flash) {
@@ -85,6 +87,7 @@ public class BeatController {
 		
 	}
 	
+	@Secured("ROLE_ADMIN")
 	@GetMapping("/form/{id}")
 	public String crear(@PathVariable(value = "id") Long id,
 			Map<String, Object> model,
@@ -106,6 +109,7 @@ public class BeatController {
 
 	}
 	
+	@Secured("ROLE_ADMIN")
 	@PostMapping("/form")
 	public String guardar(@Valid Beat beat,
 			BindingResult result,

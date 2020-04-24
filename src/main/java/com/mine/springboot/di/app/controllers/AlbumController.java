@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -77,6 +78,7 @@ public class AlbumController {
 		return "album/album-listar";
 	}
 	
+	@Secured("ROLE_ADMIN")
 	@GetMapping("/eliminar/{id}")
 	public String eliminar(@PathVariable(value = "id") Long id,
 			RedirectAttributes flash) {
@@ -100,6 +102,7 @@ public class AlbumController {
 		
 	}
 	
+	@Secured("ROLE_ADMIN")
 	@GetMapping("/form/{productorId}")
 	public String crear(@PathVariable(value = "productorId") Long productorId,
 			Map<String, Object> model,
@@ -124,7 +127,8 @@ public class AlbumController {
 	public @ResponseBody List<Beat> cargarBeats(@PathVariable String term){
 		return productorService.findByNombre(term);
 	}
-		
+	
+	@Secured("ROLE_ADMIN")
 	@PostMapping("/form")
 	public String guardar(@Valid Album album,
 			BindingResult result,

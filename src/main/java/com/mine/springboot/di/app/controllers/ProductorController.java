@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -38,7 +39,7 @@ public class ProductorController {
 
 	@Autowired
 	private IUploadFileService uploadFileService;
-
+	
 	@GetMapping(value = "/uploads-productor/{filename:.+}")
 	public ResponseEntity<Resource> verFoto(@PathVariable String filename) {
 		Resource recurso = null;
@@ -54,7 +55,7 @@ public class ProductorController {
 				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + recurso.getFilename() +"\"")
 				.body(recurso);
 	}
-
+	
 	@GetMapping("/ver/{id}")
 	public String ver(@PathVariable(value = "id") Long id, Map<String, Object> model, RedirectAttributes flash) {
 
@@ -70,7 +71,7 @@ public class ProductorController {
 
 		return "detalles";
 	}
-
+	
 	@GetMapping("/ver-beat/{id}")
 	public String verBeat(@PathVariable(value = "id") Long id, Map<String, Object> model, RedirectAttributes flash) {
 
@@ -93,7 +94,8 @@ public class ProductorController {
 		model.addAttribute("productores", productorService.findAll());
 		return "productor-listar";
 	}
-
+	
+	@Secured("ROLE_ADMIN")
 	@GetMapping(value = "/form")
 	public String crear(Map<String, Object> model) {
 
@@ -103,7 +105,8 @@ public class ProductorController {
 
 		return "forms/productor-form";
 	}
-
+	
+	@Secured("ROLE_ADMIN")
 	@GetMapping(value = "/form/{id}")
 	public String editar(@PathVariable(value = "id") Long id, Map<String, Object> model, RedirectAttributes flash) {
 
@@ -125,6 +128,7 @@ public class ProductorController {
 		return "forms/productor-form";
 	}
 
+	@Secured("ROLE_ADMIN")
 	@PostMapping(value = "/form")
 	public String guardar(@Valid Productor productor, BindingResult result, Model model,
 			@RequestParam("file") MultipartFile foto, RedirectAttributes flash, SessionStatus status) {
@@ -164,7 +168,8 @@ public class ProductorController {
 
 		return "redirect:/productores/";
 	}
-
+	
+	@Secured("ROLE_ADMIN")
 	@GetMapping(value = "/eliminar/{id}")
 	public String eliminar(@PathVariable(value = "id") Long id, RedirectAttributes flash) {
 

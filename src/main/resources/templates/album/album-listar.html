@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="layout/layout :: head">
 </head>
 <body>
@@ -46,7 +46,7 @@
 								<li class="list-group-item"
 									th:text="'Fecha: ' + ${album.createAt}"></li>
 							</ul>
-							<ul class="list-group px-2 text-light">
+							<ul sec:authorize="hasRole('ROLE_ADMIN')" class="list-group px-2 text-light">
 								<li class="list-group-item list-group-item-success"
 									th:text="'Acciones'"></li>
 								<!-- <li class="list-group-item" th:text="'Editar'"><a th:href="@{/album/form/} + ${album.id}" th:text="'editar'" class="btn btn-primary">Editar</a></li>  -->

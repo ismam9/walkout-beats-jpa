@@ -11,7 +11,8 @@
 		
 		<div class="card text-warning">
 			<div class="card-header" th:text="${title}"></div>
-			<a class="btn btn-xs" th:href="@{/productores/form}">crear productor</a>
+			<a sec:authorize="hasRole('ROLE_ADMIN')" class="btn btn-xs" th:href="@{/productores/form}">crear productor</a>
+			
 			<div class="row px-4">
 				<div class="col-md-4" th:each="productor: ${productores}">
 					<div class="card my-2" style="width: auto;">
@@ -43,7 +44,7 @@
 						  		
 					  		</div>
 					  		
-					  		<div class="navbar navbar-expand-sm bg-dark py-0 px-0" style="border-top:2px solid yellow;">
+					  		<div sec:authorize="hasRole('ROLE_ADMIN')" class="navbar navbar-expand-sm bg-dark py-0 px-0" style="border-top:2px solid yellow;">
 						  		<ul class="navbar-nav mx-auto">
 						  			<li class="nav-item">
 						  				<a th:href="@{/productores/form/} + ${productor.id}" th:text="'editar'" class="btn btn-primary">Editar</a>
