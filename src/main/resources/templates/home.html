@@ -10,26 +10,26 @@
 			<h4 class="text-warning" th:text="${title}"></h4>
 			<div class="row px-4">
 				
-				<div class="col-md-3 py-2 px-1" th:each="beats: ${allbeats}">
+				<div class="col-md-3 py-2 px-1" th:each="audios: ${allaudios}">
 				  	<div class="card text-warning">
 			    		
-			    		<div class="card-header py-0" th:text="${beats.nombre}"></div>
+			    		<div class="card-header py-0" th:text="${audios.nombre}"></div>
 			    			
 			    			<div class="d-flex justify-content-center">
-				    			<img th:if="${#strings.length(beats.foto) > 0}"
+				    			<img th:if="${#strings.length(audios.foto) > 0}"
 								class="img-thumbnail rounded" style="max-width: 75%;"
-								th:src="@{'/beat/uploads-productor/' + ${beats.foto}}" th:alt="${beats.foto}" />
+								th:src="@{'/audio/uploads-productor/' + ${audios.foto}}" th:alt="${audios.foto}" />
 								
-								<img th:if="${#strings.isEmpty(beats.foto) || #strings.length(beats.foto) < 0}" th:src="@{/images/walkout-dark.jpg}" class="card-img-top" alt="Walkout Logo" style="max-width: 75%;" />
+								<img th:if="${#strings.isEmpty(audios.foto) || #strings.length(audios.foto) < 0}" th:src="@{/images/walkout-dark.jpg}" class="card-img-top" alt="Walkout Logo" style="max-width: 75%;" />
 			    			</div>
 			    		
 				    	<div class="card-body px-0 py-0 my-0">
 				    		
 				    		<div class="d-flex justify-content-start">
-				    			<p th:if="${#strings.isEmpty(beats.audio) || #strings.length(beats.audio) < 0}" class="container text-info my-0" th:text="'No existe audio para este beat'"></p>
+				    			<p th:if="${#strings.isEmpty(audios.audio) || #strings.length(audios.audio) < 0}" class="container text-info my-0" th:text="'No existe audio para este beat'"></p>
 				    			
-				    			<audio controls class="song" th:if="${not #strings.isEmpty(beats.audio)}">
-									<source th:src="@{'/beat/uploads-productor/' + ${beats.audio}}" type="audio/mpeg">							
+				    			<audio controls class="song" th:if="${not #strings.isEmpty(audios.audio)}">
+									<source th:src="@{'/audio/uploads-productor/' + ${audios.audio}}" type="audio/mpeg">							
 								</audio>
 				    		</div>
 				    		<br/>
@@ -42,14 +42,14 @@
 						  		<!-- <i onclick="document.getElementById('player').volume += 0.1">Vol +</i> 
 						  		<i onclick="document.getElementById('player').volume -= 0.1">Vol -</i>  -->
 							</div> 
-							<h5 th:text="${beats.productor.nickname}"></h5>
+							<h5 th:text="${audios.productor.nickname}"></h5>
 				      		<div class="text-warning my-0 py-0 mx-4">
 				      			<span class="text-left">
-				      				<p class="card-text" th:text="${beats.tipo}"></p>
+				      				<p class="card-text" th:text="${audios.tipo}"></p>
 				      			</span>
-				      			<p class="card-text text-right" th:text="${beats.categoria.nombre}"></p>
+				      			<p class="card-text text-right" th:text="${audios.categoria.nombre}"></p>
 				      		</div>
-				      		<p class="card-text"><strong><small th:text="'Create at: ' + ${beats.createAt}" class="text-light"></small></strong></p>
+				      		<p class="card-text"><strong><small th:text="'Create at: ' + ${audios.createAt}" class="text-light"></small></strong></p>
 				    	</div>
 				    
 			  		</div>

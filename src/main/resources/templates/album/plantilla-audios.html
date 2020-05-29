@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+	<table th:fragment="audioItem" class="d-none">
+	
+	<tbody id="plantillaAudios">
+		<tr id="row_{ID}">
+			<td class="d-none"><input type="hidden" value="{ID}" name="audioi_id[]" /></td>
+			<td>{ID}</td>
+			<td>{NOMBRE}</td>
+			<td>{PRECIO}</td>
+			<td>{CREATEAT}</td>
+			<td>{HASTAGS}</td>
+			<td><a href="#" class="btn btn-danger btn-xs" onclick="itemsHelper.eliminarAudio({ID});">X</a></td>			
+		</tr>
+	</tbody>
+	
+	</table>
+
+</body>
+</html>

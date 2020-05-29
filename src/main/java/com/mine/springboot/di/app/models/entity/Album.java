@@ -16,13 +16,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "album")
@@ -43,16 +43,21 @@ public class Album implements Serializable {
 	
 	@OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name="album_id")
-	private List<BeatAlbum> beatsa;
+	private List<ItemAlbum> audioi;
 
 	private String foto;
 	
 	public Album() {
-		this.beatsa = new ArrayList<BeatAlbum>();
+		this.audioi = new ArrayList<ItemAlbum>();
 	}	
 
 	@PrePersist
 	public void prePersist() {
+		createAt = new Date();
+	}
+
+	@PreUpdate
+	public void preUpdate() {
 		createAt = new Date();
 	}
 
@@ -96,16 +101,16 @@ public class Album implements Serializable {
 		this.foto = foto;
 	}	
 
-	public List<BeatAlbum> getBeatsa() {
-		return beatsa;
+	public List<ItemAlbum> getAudioi() {
+		return audioi;
 	}
 
-	public void setBeatsa(List<BeatAlbum> beatsa) {
-		this.beatsa = beatsa;
+	public void setAudioi(List<ItemAlbum> audioi) {
+		this.audioi = audioi;
 	}
 
-	public void addBeatAlbum(BeatAlbum beat) {
-		this.beatsa.add(beat);
+	public void addAudioAlbum(ItemAlbum audio) {
+		this.audioi.add(audio);
 	}
 	
 	private static final long serialVersionUID = 1L;

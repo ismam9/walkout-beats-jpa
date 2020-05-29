@@ -34,10 +34,10 @@ public class Categoria implements Serializable {
 	private Date createAt;
 	
 	@OneToMany(mappedBy = "categoria", fetch=FetchType.LAZY, cascade=CascadeType.ALL, orphanRemoval = true)
-	private List<Beat> beats;
+	private List<Audio> audios;
 	
 	public Categoria() {
-		this.beats = new ArrayList<>();
+		this.audios = new ArrayList<>();
 	}
 
 	public Long getId() {
@@ -64,16 +64,16 @@ public class Categoria implements Serializable {
 		this.createAt = createAt;
 	}
 	
-	public List<Beat> getBeats() {
-		return beats;
+	public List<Audio> getAudios() {
+		return audios;
 	}
 
-	public void setBeats(List<Beat> Beats) {
-		this.beats = Beats;
+	public void setAudios(List<Audio> audios) {
+		this.audios = audios;
 	}
 	
-	public void addBeat(Beat beat) {
-		beats.add(beat);
+	public void addAudio(Audio audio) {
+		audios.add(audio);
 	}
 
 	private static final long serialVersionUID = 1L;

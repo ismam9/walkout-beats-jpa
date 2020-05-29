@@ -6,6 +6,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.mine.springboot.di.app.auth.handler.LoginSuccesHandler;
@@ -27,7 +28,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		
-		http.authorizeRequests().antMatchers("/", "/css/**", "/js/**", "/images/**", "/walkout/**", "/productores/**", "/beat/**", "/album/**").permitAll()
+		http.authorizeRequests().antMatchers("/", "/css/**", "/js/**", "/images/**", "/signup/**", "/walkout/**", "/productores/**", "/beat/**", "/album/**").permitAll()
 		/*.antMatchers("/ver/**").hasAnyRole("USER")*/
 		/*.antMatchers("/uploads/**").hasAnyRole("USER")*/
 		/*.antMatchers("/form/**").hasAnyRole("ADMIN")
@@ -43,6 +44,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 		.logout().permitAll()
 		.and()
 		.exceptionHandling().accessDeniedPage("/error_403");
+
 		
 	}
 

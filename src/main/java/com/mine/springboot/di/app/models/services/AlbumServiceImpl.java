@@ -16,6 +16,7 @@ public class AlbumServiceImpl implements IAlbumService{
 	private IAlbumDao albumDao;
 		
 	@Override
+	@Transactional(readOnly = true)
 	public List<Album> findAll() {
 		// TODO Auto-generated method stub
 		return (List<Album>) albumDao.findAll();

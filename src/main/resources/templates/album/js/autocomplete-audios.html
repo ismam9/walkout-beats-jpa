@@ -6,12 +6,12 @@
 		console.log("hola que tal");
 
 		$(document).ready(function() {
-			$("#buscar_beat").autocomplete({
+			$("#buscar_audio").autocomplete({
 
 				source : function(request, response) {
 					console.log("hola que tal");
 					$.ajax({
-						url : "/album/cargar-beats/" + request.term,
+						url : "/album/cargar-audios/" + request.term,
 						dataType : "json",
 						data : {
 							term : request.term
@@ -22,6 +22,8 @@
 									value : item.id,
 									label : item.nombre,
 									precio : item.precio,
+									createat : item.createAt,
+									hastags : item.hastags,
 								};
 							}));
 						},
@@ -30,20 +32,22 @@
 				select : function(event, ui) {
 					//$("#buscar_producto").val(ui.item.label);
 					
-					var linea = $("#plantillaBeats").html();
+					var linea = $("#plantillaAudios").html();
 					
 					linea = linea.replace(/{ID}/g, ui.item.value);
 					linea = linea.replace(/{NOMBRE}/g, ui.item.label);
 					linea = linea.replace(/{PRECIO}/g, ui.item.precio);
+					linea = linea.replace(/{CREATEAT}/g, ui.item.createat);
+					linea = linea.replace(/{HASTAGS}/g, ui.item.hastags);
 					
-					$("#cargarBeat tbody").append(linea);
+					$("#cargarAudio tbody").append(linea);
 					
 					return false;
 				}
 			});
 			
 			$("form").submit(function(){
-				$("#plantillaBeats").remove();
+				$("#plantillaAudios").remove();
 				return;
 			});
 
@@ -55,7 +59,7 @@
 					
 					var resultado = false;
 					
-					$('input[name="beatsa_id[]"]').each(function(){
+					$('input[name="audioi_id[]"]').each(function(){
 						if(parseInt(id) == parseInt($(this).val()) ){
 							resultado = true;
 						}
@@ -64,7 +68,7 @@
 					
 					return resultado
 				},
-				eliminarBeat: function(id){
+				eliminarAudio: function(id){
 					$("#row_" + id).remove();
 					
 				}

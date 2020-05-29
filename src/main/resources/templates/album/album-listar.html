@@ -55,35 +55,35 @@
 						</div>
 		
 						<div class="alert alert-info my-4"
-							th:if="${#lists.isEmpty(album.beatsa)}"
+							th:if="${#lists.isEmpty(album.audioi)}"
 							th:text="'No hay beats para el album' + ${album.descripcion}"></div>
 						
-						<div class="row" th:if="${not #lists.isEmpty(album.beatsa)}">
-							<div class="col-sm-12 my-0" th:each="linea: ${album.beatsa}">
-								<div class="card-header" th:text="${linea.beat.nombre}">
+						<div class="row" th:if="${not #lists.isEmpty(album.audioi)}">
+							<div class="col-sm-12 my-0" th:each="linea: ${album.audioi}">
+								<div class="card-header" th:text="${linea.audio.nombre}">
 							    	
 							  	</div>
 							  	<div class="card-body py-0">
 							  		<div class="row py-0">
 							  			<div class="col-sm-8 mx-0">
 							  			
-							  				<h5 class="card-title" th:text="${linea.beat.productor.nickname}"></h5>
+							  				<h5 class="card-title" th:text="${linea.audio.productor.nickname}"></h5>
 							  				
-								    		<h4 th:if="${#strings.isEmpty(linea.beat.audio) || #strings.length(linea.beat.audio) < 0}" class="container" th:text="'No existe audio para este beat'" style="padding-left:0px; padding-right:0px;"></h4>
-											<audio controls class="container" th:if="${not #strings.isEmpty(linea.beat.audio)}" style="padding-left:0px; padding-right:0px;">
-												<source th:src="@{'/beat/uploads-productor/' + ${linea.beat.audio}}" type="audio/mpeg">
+								    		<h4 th:if="${#strings.isEmpty(linea.audio.audio) || #strings.length(linea.audio.audio) < 0}" class="container" th:text="'No existe audio para este beat'" style="padding-left:0px; padding-right:0px;"></h4>
+											<audio controls class="container" th:if="${not #strings.isEmpty(linea.audio.audio)}" style="padding-left:0px; padding-right:0px;">
+												<source th:src="@{'/audio/uploads-productor/' + ${linea.audio.audio}}" type="audio/mpeg">
 											</audio>
 								    		<!-- <a href="#" class="btn btn-primary">Editar</a>  -->
 							  			</div>
 							  			<div class="col-sm-4 mx-0 py-0 my-0">
-							  				<img th:if="${#strings.length(linea.beat.foto) > 0}"
+							  				<img th:if="${#strings.length(linea.audio.foto) > 0}"
 											class="img-thumbnail rounded float-left" style="max-width: 60%%;"
-											th:src="@{'/beat/uploads-productor/' + ${linea.beat.foto}}" th:alt="${linea.beat.foto}" />
+											th:src="@{'/audio/uploads-productor/' + ${linea.audio.foto}}" th:alt="${linea.audio.foto}" />
 						
-											<img th:if="${#strings.isEmpty(linea.beat.foto) || #strings.length(linea.beat.foto) < 0}" th:src="@{/images/walkout-dark.jpg}" class="card-img-top" alt="Walkout Logo" style="max-width: 45%;" />
+											<img th:if="${#strings.isEmpty(linea.audio.foto) || #strings.length(linea.audio.foto) < 0}" th:src="@{/images/walkout-dark.jpg}" class="card-img-top" alt="Walkout Logo" style="max-width: 45%;" />
 											
-											<p class="card-text" th:text="${linea.beat.categoria.nombre} + ' ' + ${linea.beat.tipo}"></p>
-											<p class="card-text" th:text="${linea.beat.precio}"></p>
+											<p class="card-text" th:text="${linea.audio.categoria.nombre} + ' ' + ${linea.audio.tipo}"></p>
+											<p class="card-text" th:text="${linea.audio.precio}"></p>
 							  			</div>
 							  		</div>
 				

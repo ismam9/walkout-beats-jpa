@@ -7,10 +7,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.mine.springboot.di.app.models.dao.IAlbumDao;
-import com.mine.springboot.di.app.models.dao.IBeatDao;
+import com.mine.springboot.di.app.models.dao.IAudioDao;
 import com.mine.springboot.di.app.models.dao.IProductorDao;
 import com.mine.springboot.di.app.models.entity.Album;
-import com.mine.springboot.di.app.models.entity.Beat;
+import com.mine.springboot.di.app.models.entity.Audio;
 import com.mine.springboot.di.app.models.entity.Productor;
 
 @Service
@@ -23,7 +23,7 @@ public class ProductorServiceImpl implements IProductorService {
 	private IAlbumDao albumDao;
 	
 	@Autowired
-	private IBeatDao beatDao;
+	private IAudioDao audioDao;
 	
 	@Override
 	@Transactional
@@ -62,29 +62,29 @@ public class ProductorServiceImpl implements IProductorService {
 	
 	@Override
 	@Transactional(readOnly = true)
-	public Productor fetchByIdWithBeats(Long id) {
+	public Productor fetchByIdWithAudios(Long id) {
 		// TODO Auto-generated method stub
-		return productorDao.fetchByIdWithBeats(id);
+		return productorDao.fetchByIdWithAudios(id);
 	}
 
 	@Override
 	@Transactional(readOnly = true)
-	public Album fetchByIdWithProductorWithBeatAlbumWithAlbum(Long id) {
+	public Album fetchByIdWithProductorWithAudioAlbumWithAlbum(Long id) {
 		// TODO Auto-generated method stub
-		return albumDao.fetchByIdWithProductorWithBeatAlbumWithAlbum(id);
+		return albumDao.fetchByIdWithProductorWithAudioAlbumWithAlbum(id);
 	}
 	
 	@Override
 	@Transactional(readOnly = true)
-	public List<Beat> findAllBeats() {
+	public List<Audio> findAllAudios() {
 		// TODO Auto-generated method stub
-		return (List<Beat>) beatDao.findAll();
+		return audioDao.findAllAudioActive();
 	}
 
 	@Override
-	public List<Beat> findByNombre(String name) {
+	public List<Audio> findByNombre(String name) {
 		// TODO Auto-generated method stub
-		return beatDao.findByNombre(name);
+		return audioDao.findByNombre(name);
 	}
 
 	@Override
@@ -96,16 +96,16 @@ public class ProductorServiceImpl implements IProductorService {
 	
 	@Override
 	@Transactional
-	public void saveBeat(Beat beat) {
+	public void saveAudio(Audio audio) {
 		
-		beatDao.save(beat);
+		audioDao.save(audio);
 	}
 
 	@Override
 	@Transactional(readOnly = true)
-	public Beat findByBeatById(Long id) {
+	public Audio findByAudioById(Long id) {
 		// TODO Auto-generated method stub
-		return beatDao.findById(id).orElse(null);
+		return audioDao.findById(id).orElse(null);
 	}
 
 	@Override
@@ -123,9 +123,9 @@ public class ProductorServiceImpl implements IProductorService {
 	}
 
 	@Override
-	public void deleteBeat(Long id) {
+	public void deleteAudio(Long id) {
 		// TODO Auto-generated method stub
-		beatDao.deleteById(id);
+		audioDao.deleteById(id);
 	}
 
 

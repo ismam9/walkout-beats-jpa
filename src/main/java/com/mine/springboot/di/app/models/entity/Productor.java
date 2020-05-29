@@ -23,37 +23,44 @@ public class Productor implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@NotEmpty
 	@Size(min = 4, max = 20)
 	private String nombre;
-	
+
 	@NotEmpty
 	@Size(min = 4, max = 20)
 	private String apellido;
-	
+
+	private String descripcion;
+	private String especificacion;
+
 	@NotEmpty
 	@Size(min = 4, max = 20)
 	private String nickname;
-	
+
 	@NotEmpty
 	private String ciudad;
-	
+
 	@NotEmpty
 	@Email
 	private String email;
-	
-	@OneToMany(mappedBy = "productor", fetch=FetchType.LAZY, cascade=CascadeType.ALL, orphanRemoval = true)
-	private List<Beat> beats;
-	
-	@OneToMany(mappedBy = "productor", fetch=FetchType.LAZY, cascade=CascadeType.ALL, orphanRemoval = true)
+
+	private boolean cantante;
+	private boolean productorm;
+	private boolean sonido;
+
+	@OneToMany(mappedBy = "productor", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Audio> audios;
+
+	@OneToMany(mappedBy = "productor", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Album> albums;
-	
+
 	private String foto;
 
 	public Productor() {
-		albums = new ArrayList<>();
-		beats = new ArrayList<Beat>();
+		albums = new ArrayList<Album>();
+		audios = new ArrayList<Audio>();
 	}
 
 	public Long getId() {
@@ -80,6 +87,22 @@ public class Productor implements Serializable {
 		this.apellido = apellido;
 	}
 
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	public String getEspecificacion() {
+		return especificacion;
+	}
+
+	public void setEspecificacion(String especificacion) {
+		this.especificacion = especificacion;
+	}
+
 	public String getNickname() {
 		return nickname;
 	}
@@ -104,6 +127,30 @@ public class Productor implements Serializable {
 		this.email = email;
 	}
 
+	public boolean isCantante() {
+		return cantante;
+	}
+
+	public void setCantante(boolean cantante) {
+		this.cantante = cantante;
+	}
+
+	public boolean isProductorm() {
+		return productorm;
+	}
+
+	public void setProductorm(boolean productorm) {
+		this.productorm = productorm;
+	}
+
+	public boolean isSonido() {
+		return sonido;
+	}
+
+	public void setSonido(boolean sonido) {
+		this.sonido = sonido;
+	}
+
 	public String getFoto() {
 		return foto;
 	}
@@ -111,7 +158,7 @@ public class Productor implements Serializable {
 	public void setFoto(String foto) {
 		this.foto = foto;
 	}
-	
+
 	public List<Album> getAlbums() {
 		return albums;
 	}
@@ -119,21 +166,21 @@ public class Productor implements Serializable {
 	public void setAlbums(List<Album> albums) {
 		this.albums = albums;
 	}
-	
+
 	public void addAlbum(Album album) {
 		albums.add(album);
 	}
 
-	public List<Beat> getBeats() {
-		return beats;
+	public List<Audio> getAudios() {
+		return audios;
 	}
 
-	public void setBeats(List<Beat> beats) {
-		this.beats = beats;
+	public void setAudios(List<Audio> audios) {
+		this.audios = audios;
 	}
-	
-	public void addBeat(Beat beat) {
-		beats.add(beat);
+
+	public void addAudio(Audio audio) {
+		audios.add(audio);
 	}
 
 	private static final long serialVersionUID = 1L;

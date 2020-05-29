@@ -10,7 +10,7 @@ public interface IProductorDao extends CrudRepository<Productor, Long>{
 	@Query("select p from Productor p left join fetch p.albums a where p.id=?1")
 	public Productor fetchByIdWithAlbumnes(Long id);
 	
-	@Query("select p from Productor p left join fetch p.beats b where p.id=?1")
-	public Productor fetchByIdWithBeats(Long id);
+	@Query("select p from Productor p left join fetch p.audios a where p.id=?1")
+	public Productor fetchByIdWithAudios(Long id);
 	
 }

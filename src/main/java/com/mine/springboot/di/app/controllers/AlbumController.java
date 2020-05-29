@@ -27,8 +27,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mine.springboot.di.app.models.entity.Album;
-import com.mine.springboot.di.app.models.entity.Beat;
-import com.mine.springboot.di.app.models.entity.BeatAlbum;
+import com.mine.springboot.di.app.models.entity.Audio;
+import com.mine.springboot.di.app.models.entity.ItemAlbum;
 import com.mine.springboot.di.app.models.entity.Productor;
 import com.mine.springboot.di.app.models.services.IProductorService;
 import com.mine.springboot.di.app.models.services.IUploadFileService;
@@ -65,7 +65,7 @@ public class AlbumController {
 			Model model,
 			RedirectAttributes flash) {
 		
-		Album album = productorService.fetchByIdWithProductorWithBeatAlbumWithAlbum(id);
+		Album album = productorService.fetchByIdWithProductorWithAudioAlbumWithAlbum(id);
 		
 		if (album == null) {
 			flash.addFlashAttribute("album", album);
@@ -123,8 +123,8 @@ public class AlbumController {
 		return "forms/album-form";
 	}
 	
-	@GetMapping(value="/cargar-beats/{term}", produces= {"application/json"})
-	public @ResponseBody List<Beat> cargarBeats(@PathVariable String term){
+	@GetMapping(value="/cargar-audios/{term}", produces= {"application/json"})
+	public @ResponseBody List<Audio> cargarAudios(@PathVariable String term){
 		return productorService.findByNombre(term);
 	}
 	
@@ -133,7 +133,7 @@ public class AlbumController {
 	public String guardar(@Valid Album album,
 			BindingResult result,
 			Model model,
-			@RequestParam(name = "beatsa_id[]", required = false) Long[] beatsaId,
+			@RequestParam(name = "audioi_id[]", required = false) Long[] audioiId,
 			@RequestParam("file") MultipartFile foto,
 			RedirectAttributes flash,
 			SessionStatus status) {
@@ -143,17 +143,17 @@ public class AlbumController {
 			return "album/form";
 		}
 		
-		if (beatsaId == null || beatsaId.length == 0) {
+		if (audioiId == null || audioiId.length == 0) {
 			model.addAttribute("title", "Crear Album");
 			model.addAttribute("error", "Error: La factura no puede estar vacia");
 		}
 		
-		for (int i = 0; i < beatsaId.length; i++) {
-			Beat beat = productorService.findByBeatById(beatsaId[i]);
+		for (int i = 0; i < audioiId.length; i++) {
+			Audio audio = productorService.findByAudioById(audioiId[i]);
 			
-			BeatAlbum song = new BeatAlbum();
-			song.setBeat(beat);
-			album.addBeatAlbum(song);
+			ItemAlbum song = new ItemAlbum();
+			song.setAudio(audio);
+			album.addAudioAlbum(song);
 			
 		}
 		

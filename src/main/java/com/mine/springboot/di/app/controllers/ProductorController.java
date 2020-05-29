@@ -72,10 +72,10 @@ public class ProductorController {
 		return "detalles";
 	}
 	
-	@GetMapping("/ver-beat/{id}")
-	public String verBeat(@PathVariable(value = "id") Long id, Map<String, Object> model, RedirectAttributes flash) {
+	@GetMapping("/ver-audio/{id}")
+	public String verAudio(@PathVariable(value = "id") Long id, Map<String, Object> model, RedirectAttributes flash) {
 
-		Productor productor = productorService.fetchByIdWithBeats(id);
+		Productor productor = productorService.fetchByIdWithAudios(id);
 
 		if (productor == null) {
 			flash.addFlashAttribute("error", "El productor no existe en la base de datos");
@@ -85,7 +85,7 @@ public class ProductorController {
 		model.put("productor", productor);
 		model.put("title", "Contenido del productor: " + productor.getNickname());
 
-		return "detalles-beat";
+		return "detalles-audio";
 	}
 
 	@GetMapping(value = { "", "/" })

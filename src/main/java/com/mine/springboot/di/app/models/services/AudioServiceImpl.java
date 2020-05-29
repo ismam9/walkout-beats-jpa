@@ -5,30 +5,30 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.mine.springboot.di.app.models.entity.Beat;
+import com.mine.springboot.di.app.models.entity.Audio;
 
 @Service
-public class BeatServiceImpl implements IBeatService{
+public class AudioServiceImpl implements IAudioService{
 	
 	@Autowired
-	private IBeatService beatDao;
+	private IAudioService audioDao;
 	
 	@Override
-	public List<Beat> findAll() {
+	public List<Audio> findAll() {
 		// TODO Auto-generated method stub
-		return (List<Beat>) beatDao.findAll();
+		return (List<Audio>) audioDao.findAll();
 	}
 
 	@Override
-	public void save(Beat beat) {
+	public void save(Audio audio) {
 		// TODO Auto-generated method stub
-		beatDao.save(beat);
+		audioDao.save(audio);
 	}
 
 	@Override
-	public Beat findOne(Long id) {
+	public Audio findOne(Long id) {
 		// TODO Auto-generated method stub
-		return beatDao.findOne(id);
+		return audioDao.findOne(id);
 	}
 
 }

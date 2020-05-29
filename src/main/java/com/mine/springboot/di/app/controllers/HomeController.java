@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.mine.springboot.di.app.models.entity.Productor;
 import com.mine.springboot.di.app.models.services.IProductorService;
 
 @Controller
@@ -22,9 +23,10 @@ public class HomeController {
 	}
 	
 	@GetMapping(value = "/home")
-	public String beats(Model model) {
+	public String audios(Model model) {
+		
 		model.addAttribute("title", "Plataforma de venta de beats...");
-		model.addAttribute("allbeats", productorService.findAllBeats());		
+		model.addAttribute("allaudios", productorService.findAllAudios());		
 		
 		return "home";
 	}

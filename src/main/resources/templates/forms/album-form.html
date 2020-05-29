@@ -36,9 +36,9 @@
 					</div>
 					
 					<div class="form-group row py-2">
-						<label for="buscar_producto" class="col-sm-3 col-form-label" th:text="'Buscar producto'"></label>
+						<label for="buscar_producto" class="col-sm-3 col-form-label" th:text="'Buscar Audio'"></label>
 						<div class="col-sm-6">
-							<input type="text" name="buscar_beat" id="buscar_beat" class="form-control" />
+							<input type="text" name="buscar_audio" id="buscar_audio" class="form-control" />
 						</div>
 					</div>
 					
@@ -49,17 +49,17 @@
 						</div>
 					</div>
 					
-					<table th:replace="album/plantilla-beats :: beatItem"></table>
+					<table th:replace="album/plantilla-audios :: audioItem"></table>
 					
-					<table id="cargarBeat" class="table table-sm table-striped table-hover">
+					<table id="cargarAudio" class="table table-sm table-striped table-hover">
 						<thead>
 							<tr>
+								<th>Id</th>
 								<th>Nombre</th>
-								<th>Duracion</th>
 								<th>Precio</th>
-								<th>Categoria</th>
+								<th>Create At</th>
+								<th>Hastags</th>
 								<th>Eliminar</th>
-								
 							</tr>
 						</thead>
 						
@@ -82,7 +82,7 @@
 	</div>
 	<footer th:replace="layout/layout :: footer"></footer>
 	
-	<script th:replace="album/js/autocomplete-beats :: javascript"></script>
+	<script th:replace="album/js/autocomplete-audios :: javascript"></script>
 
 </body>
 </html>

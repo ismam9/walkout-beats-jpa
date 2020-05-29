@@ -38,6 +38,24 @@
 					</div>
 				</div>
 				<div class="form-group row py-2">
+					<label class="col-form-label col-sm-2">Descripcion:</label>
+					<div class="col-sm-6">
+						<input type="text" th:field="*{descripcion}"
+							class="form-control alert-danger" /> <small
+							class="form-text text-danger"
+							th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}"></small>
+					</div>
+				</div>
+				<div class="form-group row py-2">
+					<label class="col-form-label col-sm-2">Especificacion:</label>
+					<div class="col-sm-6">
+						<input type="text" th:field="*{especificacion}"
+							class="form-control alert-danger" /> <small
+							class="form-text text-danger"
+							th:if="${#fields.hasErrors('especificacion')}" th:errors="*{especificacion}"></small>
+					</div>
+				</div>
+				<div class="form-group row py-2">
 					<label class="col-form-label col-sm-2">Email:</label>
 					<div class="col-sm-6">
 						<input type="email" th:field="*{email}"
@@ -45,6 +63,24 @@
 							class="form-text text-danger"
 							th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small>
 					</div>
+				</div>
+				<div class="form-group row py-2">
+					<label class="col-form-label col-sm-2">Seleccione los roles que cumples:</label>
+					<div class="form-check-inline">
+			      		<label class="form-check-label" for="cantante">
+				        	<input id="cantante" type="checkbox" th:field="*{cantante}" class="form-check-input" /> Cantante <small class="form-text text-danger" th:if="${#fields.hasErrors('cantante')}" th:errors="*{cantante}"></small>
+			      		</label>
+		      		</div>
+		      		<div class="form-check-inline">
+			      		<label class="form-check-label" for="productor">
+				        	<input id="productor" type="checkbox" th:field="*{productorm}" class="form-check-input" /> Productor <small class="form-text text-danger" th:if="${#fields.hasErrors('productorm')}" th:errors="*{productorm}"></small>
+			      		</label>
+			      	</div>
+			      	<div class="form-check-inline">
+		      			<label class="form-check-label" for="sonido">
+			        		<input id="sonido" type="checkbox" th:field="*{sonido}" class="form-check-input" /> Sonido <small class="form-text text-danger" th:if="${#fields.hasErrors('sonido')}" th:errors="*{sonido}"></small>
+				      	</label>
+			      	</div>
 				</div>
 				<div class="form-group row py-2">
 					<label class="col-form-label col-sm-2">Nickname:</label>

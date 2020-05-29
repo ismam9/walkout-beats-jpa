@@ -9,12 +9,18 @@
 	
 	<div id="containerbodyp" class="container py-4">
 		
+		
 		<div class="card text-warning">
 			<div class="card-header" th:text="${title}"></div>
 			<a sec:authorize="hasRole('ROLE_ADMIN')" class="btn btn-xs" th:href="@{/productores/form}">crear productor</a>
 			
+			<!-- <div th:if="${#authorization.expression('hasRole(''ROLE_PRODUCTOR'')') and #authorization.expression('hasRole(''ROLE_USER'')')}">
+			    This will only be displayed if authenticated user has role ROLE_ADMIN.
+			</div>  -->
+				
 			<div class="row px-4">
 				<div class="col-md-4" th:each="productor: ${productores}">
+					<!--<p th:if="${username == productor.nickname}"><a th:href="@{/productores/ver/} + ${productor.id}" th:text="'Ver albumnes'"></a></p>-->
 					<div class="card my-2" style="width: auto;">
 					
 	  					<img th:if="${#strings.length(productor.foto) > 0}"
@@ -38,7 +44,7 @@
 						  				<a class="nav-link text-light" th:href="@{/productores/ver/} + ${productor.id}" th:text="'Ver albumnes'"></a>
 						  			</li>
 						  			<li class="nav-item mx-0 px-4">
-						  				<a class="nav-link text-light" th:href="@{/productores/ver-beat/} + ${productor.id}" th:text="'Ver beats'"></a>
+						  				<a class="nav-link text-light" th:href="@{/productores/ver-audio/} + ${productor.id}" th:text="'Ver Audios'"></a>
 						  			</li>
 						  		</ul>
 						  		
@@ -51,6 +57,9 @@
 						  				<a class="btn btn-danger" th:href="@{/productores/eliminar/} + ${productor.id}" th:text="'eliminar'" onclick="return confirm('seguro que desea eliminar el usuario???');"></a>
 						  			</li>
 						  		</ul>
+					  		</div>
+					  		<div sec:authorize="hasRole('ROLE_PRODUCTOR')" th:if="${#authentication.name == productor.nickname}">
+					  			<p th:text="'Enlace perfil de: ' + ${#authentication.name}"></p>
 					  		</div>
 					  		
 					  	</div>

@@ -26,9 +26,9 @@ public class SpringBootWalkoutBeatApplication implements CommandLineRunner {
 		uploadFileService.deleteAll();
 		uploadFileService.init();
 		
-		String password = "12345";
+		String password = "1234";
 		
-		for(int i = 0; i < 2; i++) {
+		for(int i = 0; i < 1; i++) {
 			String bcryptString = passwordEncoder.encode(password);
 			System.out.println(bcryptString);
 		}

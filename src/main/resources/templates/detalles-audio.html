@@ -13,7 +13,7 @@
 		<div sec:authorize="hasRole('ROLE_ADMIN')" class="navbar navbar-expand-lg navbar-light bg-light">
 		 	<ul class="navbar-nav">
 		 		<li class="nav-item"><a class="nav-link" th:href="@{'/album/form/' + ${productor.id}}" th:text="'crear album'"></a></li>
-		 		<li class="nav-item"><a class="nav-link" th:href="@{'/beat/form/' + ${productor.id}}" th:text="'crear beat'"></a></li>
+		 		<li class="nav-item"><a class="nav-link" th:href="@{'/audio/form/' + ${productor.id}}" th:text="'crear Audio'"></a></li>
 		 	</ul>
 	 	</div>
 	 	
@@ -33,39 +33,39 @@
 			</ul>
 			 -->
 			
-				<div th:if="${#lists.isEmpty(productor.beats)}"
+				<div th:if="${#lists.isEmpty(productor.audios)}"
 				class="alert alert-info my-4"
 				th:text="'No existen beats para ' + ${productor.nombre} + ' ' + ${productor.apellido}"></div>
 
-			<div class="col-md-3 py-2 px-1" th:each="beat: ${productor.beats}">
+			<div class="col-md-3 py-2 px-1" th:each="audio: ${productor.audios}">
 				<div class="card text-warning">
 							
-					<img th:if="${#strings.length(beat.foto) > 0}"
+					<img th:if="${#strings.length(audio.foto) > 0}"
 					class="img-thumbnail rounded float-left" style="max-width: 100%;"
-					th:src="@{'/beat/uploads-productor/' + ${beat.foto}}" th:alt="${beat.foto}" />
+					th:src="@{'/audio/uploads-productor/' + ${audio.foto}}" th:alt="${audio.foto}" />
 					
-					<img th:if="${#strings.isEmpty(beat.foto) || #strings.length(beat.foto) < 0}" th:src="@{/images/walkout-dark.jpg}" class="card-img-top" alt="Walkout Logo" style="max-width: 25%;" />
+					<img th:if="${#strings.isEmpty(audio.foto) || #strings.length(audio.foto) < 0}" th:src="@{/images/walkout-dark.jpg}" class="card-img-top" alt="Walkout Logo" style="max-width: 25%;" />
 		    		
 		    		
 			    	<div class="card-body px-0">
 			    		
-			    		<h4 th:if="${#strings.isEmpty(beat.audio) || #strings.length(beat.audio) < 0}" class="container" th:text="'No existe audio para este beat'" style="padding-left:0px; padding-right:0px;"></h4>
-						<audio controls class="container" th:if="${not #strings.isEmpty(beat.audio)}" style="padding-left:0px; padding-right:0px;">
-							<source th:src="@{'/beat/uploads-productor/' + ${beat.audio}}" type="audio/mpeg">
+			    		<h4 th:if="${#strings.isEmpty(audio.audio) || #strings.length(audio.audio) < 0}" class="container" th:text="'No existe audio para este beat'" style="padding-left:0px; padding-right:0px;"></h4>
+						<audio controls class="container" th:if="${not #strings.isEmpty(audio.audio)}" style="padding-left:0px; padding-right:0px;">
+							<source th:src="@{'/audio/uploads-productor/' + ${audio.audio}}" type="audio/mpeg">
 						</audio>
 						
-			      		<h5 class="card-title my-0" th:text="${beat.productor.nickname}"></h5>
+			      		<h5 class="card-title my-0" th:text="${audio.productor.nickname}"></h5>
 			      		<div class="text-warning my-0 py-0">
 			      			<span class="text-left">
-			      				<p class="card-text" th:text="${beat.tipo} + ' ---------------- ' + ${beat.duracion} + '. seg'"></p>
+			      				<p class="card-text" th:text="${audio.tipo} + ' ---------------- ' + ${audio.duracion} + '. seg'"></p>
 			      			</span>
-			      			<p class="card-text text-right" th:text="${beat.categoria.nombre}"></p>
+			      			<p class="card-text text-right" th:text="${audio.categoria.nombre}"></p>
 			      		</div>
-			      		<p class="card-text"><strong><small th:text="'Create at: ' + ${beat.createAt}" class="text-light"></small></strong></p>
+			      		<p class="card-text"><strong><small th:text="'Create at: ' + ${audio.createAt}" class="text-light"></small></strong></p>
 			      		
 			      		<!--<td><a class="btn btn-primary btn-xs" th:href="@{'/album/ver/' + ${album.id}}" th:text="'detalle del album'"></a></td> -->
-			      		<a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/beat/form/} + ${beat.id}" th:text="'editar'" class="btn btn-primary">Editar</a>
-						<a sec:authorize="hasRole('ROLE_ADMIN')" class="btn btn-danger btn-xs" th:href="@{'/beat/eliminar/' + ${beat.id}}" th:text="'eliminar'" onclick="return confirm('Estas seguro que desea eliminar el beat?');"></a>
+			      		<a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/audio/editform/} + ${audio.id}" th:text="'editar'" class="btn btn-primary">Editar</a>
+						<a sec:authorize="hasRole('ROLE_ADMIN')" class="btn btn-danger btn-xs" th:href="@{'/audio/eliminar/' + ${audio.id}}" th:text="'eliminar'" onclick="return confirm('Estas seguro que desea eliminar el audio?');"></a>
 			    	</div>
 				    
 		  		</div>

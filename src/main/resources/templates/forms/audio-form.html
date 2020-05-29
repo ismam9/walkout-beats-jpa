@@ -12,13 +12,13 @@
 		<div class="card text-warning">
 			<div class="card-header" th:text="${title}"></div>
 			
-			<div th:object="${beat}" th:remove="tag">
+			<div th:object="${audio}" th:remove="tag">
 				<ul th:if="${#fields.hasErrors('*')}" class="alert-danger">
 					<li th:each="err: ${#fields.errors('*')}" th:text="${err}"></li>
 				</ul>
 			</div>
 			
-			<form th:action="@{/beat/form}" th:object="${beat}" method="post" enctype="multipart/form-data">
+			<form th:action="@{/audio/form}" th:object="${audio}" method="post" enctype="multipart/form-data">
 				<div class="form-group row py-2">
 					<label class="col-form-label col-sm-2">Nombre:</label>
 					<div class="col-sm-6">
@@ -47,13 +47,12 @@
 					</div>
 				</div>
 				
-				<div class="form-group row py-2">
+				<div class="form-group row py-2" th:object="${categoria}">
 					<label class="col-form-label col-sm-2">Categoria:</label>
 					<div class="col-sm-6">
-						<input type="number" name="categoria" th:field="*{categoria}"
+						<input type="number" name="categoria"
 							class="form-control alert-danger"/> <small
-							class="form-text text-danger"
-							th:if="${#fields.hasErrors('categoria')}" th:errors="*{categoria}"></small>
+							class="form-text text-danger"></small>
 					</div>
 				</div>
 				
@@ -84,6 +83,14 @@
 					</div>
 				</div>
 				
+				<div class="form-group row py-2">
+					<label class="col-form-label col-sm-2">Hastag:</label>
+					<div class="col-sm-6" th:field="*{hastag}">
+						<input type="text" name="hastag"
+							class="form-control alert-danger"/> <small
+							class="form-text text-danger"></small>
+					</div>
+				</div>
 				
 				<div class="form-group row py-2">
 					<div class="col-sm-8">
@@ -92,6 +99,8 @@
 							al listado</a>
 					</div>
 				</div>
+				
+				<input type="hidden" th:field="*{id}" />
 					
 			</form>	
 		</div>

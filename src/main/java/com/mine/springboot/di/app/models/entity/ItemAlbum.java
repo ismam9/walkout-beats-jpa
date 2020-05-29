@@ -14,17 +14,17 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@Table(name = "beat_album")
-public class BeatAlbum implements Serializable {
+@Table(name = "item_album")
+public class ItemAlbum implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="beat_id")
+	@JoinColumn(name="audio_id")
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-	private Beat beat;
+	private Audio audio;
 	
 	public Long getId() {
 		return id;
@@ -34,12 +34,12 @@ public class BeatAlbum implements Serializable {
 		this.id = id;
 	}
 
-	public Beat getBeat() {
-		return beat;
+	public Audio getAudio() {
+		return audio;
 	}
 
-	public void setBeat(Beat beat) {
-		this.beat = beat;
+	public void setAudio(Audio audio) {
+		this.audio = audio;
 	}
 
 	private static final long serialVersionUID = 1L;
